@@ -1,0 +1,41 @@
+<app-header></app-header>
+<div class="container">
+  <h1 class="text-center">Gestión de Usuarios</h1>
+  <form (ngSubmit)="createUser()" class="mb-3">
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Nombre" [(ngModel)]="newUser.nombre" name="nombre" required />
+      </div>
+      <div class="col">
+        <input type="email" class="form-control" placeholder="Correo" [(ngModel)]="newUser.correo" name="correo" required />
+      </div>
+      <div class="col">
+        <input type="number" class="form-control" placeholder="Edad" [(ngModel)]="newUser.edad" name="edad" required />
+      </div>
+      <div class="col">
+        <button type="submit" class="btn btn-success w-100">Crear</button>
+      </div>
+    </div>
+  </form>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Edad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td><input [(ngModel)]="user.nombre" name="nombre_{{ user.nombre }}" /></td>
+        <td><input [(ngModel)]="user.correo" name="correo_{{ user.correo }}" /></td>
+        <td><input [(ngModel)]="user.edad" name="edad_{{ user.edad }}" /></td>
+        <td>
+          <button class="btn btn-primary" (click)="updateUser(user)">Actualizar</button>
+          <button class="btn btn-danger" (click)="deleteUser(user.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
